@@ -490,5 +490,35 @@ figLT2.update_traces(
 # map4
 
 
-# CALENDAR
+# REVIEWS
+
+# Filter the listings with at least 10 reviews
+listings10 = listings_details[listings_details['number_of_reviews'] >= 10]
+
+# Create a figure with subplots
+fig9, axs = plt.subplots(2, 3, figsize=(20, 15))
+fig9.suptitle('Average Review Scores by Category', fontsize=24)
+
+# Define the review categories
+categories = ['review_scores_location', 'review_scores_cleanliness', 'review_scores_value',
+              'review_scores_communication', 'review_scores_checkin', 'review_scores_accuracy']
+colors = ['#DA291C', '#FBE122', 'k', '#DA291C', '#FBE122', 'k']
+titles = ['Location', 'Cleanliness', 'Value', 'Communication', 'Arrival', 'Accuracy']
+
+# Plot each category
+for i in range(len(categories)):
+    # Calculate the frequency of each score
+    freq = listings10[categories[i]].value_counts().sort_index()
+    # Plot the bar graph in the corresponding subplot
+    axs[i//3, i%3].bar(freq.index, freq.values, color=colors[i])
+    # Set the title and axis labels
+    axs[i//3, i%3].set_title(titles[i], fontsize=18)
+    axs[i//3, i%3].set_xlabel('Average Review Score', fontsize=14)
+    axs[i//3, i%3].set_ylabel('Number of Listings', fontsize=14)
+    # Set the font size of the tick labels
+    axs[i//3, i%3].tick_params(axis='both', labelsize=12)
+
+# Adjust the spacing between the subplots
+fig9.tight_layout(pad=3.0)
+
 
