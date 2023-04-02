@@ -492,7 +492,7 @@ figLT2.update_traces(
 
 # REVIEWS
 
-listings_details = pd.read_('data/listings_details.csv')
+listings_details = pd.read_csv('data/listings_details.csv')
 
 # Filter the listings with at least 10 reviews
 listings10 = listings_details[listings_details['number_of_reviews'] >= 10]
