@@ -190,8 +190,29 @@ if st.sidebar.button("A city for everyone"):
 
     st.plotly_chart(figDIV1, use_container_width=True)
     
-    # st.markdown(map2._repr_html_(), unsafe_allow_html=True)
+    # MAPA DIVERSIDAD
 
+    # Crear mapa de Folium
+    map2 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
+
+    # uso MarkerCluster para agrupar los marcadores
+    marker_cluster2 = FastMarkerCluster([], name='marker_cluster2')
+
+    # Iterar sobre cada fila de diversidad_df1 y añadir un marcador al objeto MarkerCluster
+    for index, row in diversidad_df.iterrows():
+        folium.Marker(
+            location=[row['latitude'], row['longitude']],
+            tooltip=row['name'],
+            icon=folium.features.CustomIcon('img/disability_icon-min.png', icon_size=(25, 25))
+        ).add_to(marker_cluster2)
+
+    # Añadir el objeto MarkerCluster al mapa
+    marker_cluster2.add_to(map2)
+
+    # Mostrar el mapa en Streamlit
+    st.write("Mapa de diversidad")
+    folium_static(map2)
+   
     # BUSINESS
     
     st.image("img/business.png", use_column_width=True)
