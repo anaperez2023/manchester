@@ -142,7 +142,7 @@ if st.sidebar.button("Neighbourhoods"):
     
     st.plotly_chart(fig2, use_container_width=True)
     
-    #folium_static(map7)
+    folium_static(map7)
     
 if st.sidebar.button("A city for everyone"):
     
