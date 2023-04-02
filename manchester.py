@@ -186,7 +186,7 @@ if st.sidebar.button("A city for everyone"):
 
     st.plotly_chart(figDIV1, use_container_width=True)
 
-    st.plotly_chart(figDIV1, use_container_width=True)
+    st.plotly_chart(figDIV2, use_container_width=True)
     
     # MAPA DIVERSIDAD
 
