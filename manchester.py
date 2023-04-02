@@ -31,20 +31,13 @@ import plotly.io as pio
 
 from utils.milibreria import *
 
-import sys 
-# Agregar la ruta de instalación de geopandas a la variable de entorno PATH 
-os.environ["PATH"] += os.pathsep + r'{c:\users\user\desktop\bootcamp-data-analytics-upgrade_hub\bootcamp\data\entorno_virtual\lib\site-packages}'
-# # Agregar la ruta de instalación de geopandas a la variable de entorno PYTHONPATH 
-sys.path.append(r'{c:\users\user\desktop\bootcamp-data-analytics-upgrade_hub\bootcamp\data\entorno_virtual\lib\site-packages}')
-
-
 # CONFIGURACIÓN DE LA PÁGINA# 
 layout='centered' or 'wide' 
 st.set_page_config(page_title="Manchester", layout="wide", page_icon="🏠")
 # Esto es para no mostrar los errores de deprecation en pyplot al usuario
 st.set_option("deprecation.showPyplotGlobalUse", False)
 
-df = pd.read_csv("data\df.csv")
+df = pd.read_csv("data/df.csv")
 
 # Establecemos la imagen de fondo de la app
 
@@ -58,7 +51,7 @@ df = pd.read_csv("data\df.csv")
 #     page_bg_img = '''
 #         <style>
 #             body {
-#                 background-image: url("data:Modulo2\16-Data StoryTelling\MANCHESTER\img\manchester1.jpg");
+#                 background-image: url("data:Modulo2/16-Data StoryTelling/MANCHESTER/img/manchester1.jpg");
 #                 background-size: cover;
 #             }
 #         </style>
