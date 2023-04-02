@@ -253,7 +253,6 @@ figFAM1.update_traces(
 
 figFAM1.show(renderer = 'colab')
 
-
 # Gráfica FAM2 (precio mayor 400e):
 
 # Valores filtro Familias < 400€# Filtrar los datos por precios mayores a 400 euros
@@ -326,7 +325,7 @@ figDIV1.update_layout(
 
 figDIV1.update_traces(
     name='Comodidades',
-    marker=dict(color='black')
+    marker=dict(color='white')
 )
 
 # Gráfica DIV2 (precio mayor 400e):
@@ -349,31 +348,10 @@ figDIV2.update_layout(
 
 figDIV2.update_traces(
     name='Comodidades',
-    marker=dict(color='black')
+    marker=dict(color='white')
 )
 
 figDIV2.show(renderer = 'colab')
-
-# Mapa Diversidad: ¡¡¡ ARREGLAR !!!
-
-# map2 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
-
-# # uso MarkerCluster para agrupar los marcadores
-# marker_cluster2 = FastMarkerCluster([], name='marker_cluster2')
-
-# # Iterar sobre cada fila de diversidad_df1 y añadir un marcador al objeto MarkerCluster
-# for index, row in diversidad_df.iterrows():
-#     folium.Marker(
-#         location=[row['latitude'], row['longitude']],
-#         tooltip=row['name'],
-#         icon=folium.features.CustomIcon('/content/drive/MyDrive/BOOTCAMP_Data_Analytics/MANCHESTER/img/disability_icon-min.png', icon_size=(25, 25))
-#     ).add_to(marker_cluster2)
-
-# # Añadir el objeto MarkerCluster al mapa
-# marker_cluster2.add_to(map2)
-
-# # Mostrar el mapa
-# map2
 
 # 3. BUSINESS TRAVELLERS
 
@@ -427,26 +405,6 @@ figBS2.update_traces(
     marker=dict(color='yellow')
 )
 
-# # Mapa BUSINESS: ¡¡¡ ARREGLAR !!!
-
-# map3 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
-
-# marker_cluster3 = FastMarkerCluster([], name='marker_cluster3')
-
-# # Iterar sobre cada fila de business_df y añadir un marcador al objeto MarkerCluster
-# for index, row in business_df.iterrows():
-#     folium.Marker(
-#         location=[row['latitude'], row['longitude']],
-#         tooltip=row['name'],
-#         icon=folium.features.CustomIcon('/content/drive/MyDrive/BOOTCAMP_Data_Analytics/MANCHESTER/img/business_trip.png', icon_size= (30, 30))
-#     ).add_to(marker_cluster3)
-
-# # Añadir el objeto MarkerCluster al mapa
-# marker_cluster3.add_to(map3)
-
-# # Mostrar el mapa
-# map3
-
 # 4. LONG TERM STAYS
 
 longterm_df = df[df['amenities'].str.contains('long term', case=False)]
@@ -495,27 +453,6 @@ figLT2.update_traces(
     name='Comodidades',
     marker=dict(color='red')
 )
-
-# # Mapa long term: ¡¡¡ ARREGLAR !!!
-
-# map4 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
-
-# marker_cluster4 = FastMarkerCluster([], name='marker_cluster4')
-
-# # Iterar sobre cada fila de business_df y añadir un marcador al objeto MarkerCluster
-# for index, row in longterm_df.iterrows():
-#     folium.Marker(
-#         location=[row['latitude'], row['longitude']],
-#         tooltip=row['name'],
-#         icon=folium.features.CustomIcon('/content/drive/MyDrive/BOOTCAMP_Data_Analytics/MANCHESTER/img/family_icon.png', icon_size= (30, 30))
-#     ).add_to(marker_cluster4)
-
-# # Añadir el objeto MarkerCluster al mapa
-# marker_cluster4.add_to(map4)
-
-# # Mostrar el mapa
-# map4
-
 
 # REVIEWS
 
