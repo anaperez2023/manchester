@@ -38,6 +38,7 @@ st.set_page_config(page_title="Manchester", layout="wide", page_icon="🏠")
 st.set_option("deprecation.showPyplotGlobalUse", False)
 
 df = pd.read_csv("data/df.csv")
+familias_df = df.loc[df['amenities'].str.contains('kitchen', case=False) & df['amenities'].str.contains('crib', case=False) & df['amenities'].str.contains('backyard', case=False) & df['amenities'].str.contains('children', case=False)]
 
 # Establecemos la imagen de fondo de la app
 
@@ -154,6 +155,32 @@ if st.sidebar.button("A city for everyone"):
     st.write("El eje x representa el precio de los alojamientos y el eje y muestra los diferentes barrios de Manchester donde se encuentran estos alojamientos para familias con las comodidades de 'cocina', 'cuna', 'patio trasero' y 'niños' (según el filtro que se aplicó previamente). Cada punto en el gráfico representa un alojamiento y su posición en el eje x e y indica su precio y ubicación, respectivamente. Los puntos más a la derecha en el eje x indican alojamientos más caros, mientras que los puntos más arriba en el eje y representan alojamientos en barrios específicos de Manchester. Este tipo de gráfico puede ayudar a identificar patrones en la relación entre el precio y la ubicación de los alojamientos para familias con estas comodidades. Por ejemplo, se pueden observar agrupaciones de puntos que indican que los alojamientos en ciertos barrios tienden a tener precios más altos o más bajos que otros.")
 
     st.plotly_chart(figFAM2, use_container_width=True)
+    
+    
+    # MAPA FAMILIES
+   
+# Crear el mapa
+    map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
+
+# Uso FastMarkerCluster para agrupar los marcadores
+    marker_cluster1 = FastMarkerCluster([], name='marker_cluster1')
+
+# Iterar sobre cada fila de familias_df y añadir un marcador al objeto MarkerCluster
+    for index, row in familias_df.iterrows():
+        folium.Marker(
+        location=[row['latitude'], row['longitude']],
+        tooltip=row['name'],
+        icon=folium.features.CustomIcon('family_icon.png', icon_size=(30, 30))
+    ).add_to(marker_cluster1)
+
+# Añadir el objeto MarkerCluster al mapa
+    marker_cluster1.add_to(map1)
+
+# Añadir el control de capas al mapa
+    folium.LayerControl().add_to(map1)
+
+# Visualizar el mapa en Streamlit
+    st.markdown(map1._repr_html_(), unsafe_allow_html=True)
     
     streamlit_folium.folium_static(map1)
 
