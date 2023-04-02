@@ -40,16 +40,6 @@ st.set_option("deprecation.showPyplotGlobalUse", False)
 df = pd.read_csv("data/df.csv")
 familias_df = df.loc[df['amenities'].str.contains('kitchen', case=False) & df['amenities'].str.contains('crib', case=False) & df['amenities'].str.contains('backyard', case=False) & df['amenities'].str.contains('children', case=False)]
 
-# Establecemos la imagen de fondo de la app
-st.markdown("""
-<style>
-body {
-    background-image: url('img/experiencia-en-manchester');
-    background-size: cover;
-}
-</style>
-""", unsafe_allow_html=True)
-
 # import base64
 # import streamlit as st
 
