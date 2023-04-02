@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 import seaborn as sns
-sns.set()
+sns.set() 
 import matplotlib.pyplot as plt
 import plotly.express as px
 import streamlit as st
@@ -31,15 +31,8 @@ import plotly.io as pio
 
 from streamlit_folium import folium_static
 
-import sys 
-# Agregar la ruta de instalación de geopandas a la variable de entorno PATH 
-os.environ["PATH"] += os.pathsep + r'{c:\users\user\desktop\bootcamp-data-analytics-upgrade_hub\bootcamp\data\entorno_virtual\lib\site-packages}'
-# # Agregar la ruta de instalación de geopandas a la variable de entorno PYTHONPATH 
-sys.path.append(r'{c:\users\user\desktop\bootcamp-data-analytics-upgrade_hub\bootcamp\data\entorno_virtual\lib\site-packages}')
-
-
 # Defino DF
-df = pd.read_csv("data\df.csv")
+df = pd.read_csv("data/df.csv")
 calendar = pd.read_csv('http://data.insideairbnb.com/united-kingdom/england/greater-manchester/2022-12-27/data/calendar.csv.gz')
 
 # GRÁFICAS
