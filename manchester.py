@@ -155,7 +155,7 @@ if st.sidebar.button("A city for everyone"):
 
     st.plotly_chart(figFAM2, use_container_width=True)
     
-    st.markdown(map1._repr_html_(), unsafe_allow_html=True)
+    streamlit_folium.folium_static(map1)
 
     # DIVERSIDAD
     
