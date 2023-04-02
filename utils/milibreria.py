@@ -570,4 +570,16 @@ fig21.update_layout(title_text='Average daily price for a 2-person accommodation
 
 fig21.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=20)
 
+ # HOSTS
 
+# Replace 't' and 'f' with 'True' and 'False'
+listings_details.host_is_superhost = listings_details.host_is_superhost.replace({"t": "True", "f": "False"})
+
+# Count values and plot bar chart
+feq30 = listings_details['host_is_superhost'].value_counts()
+fig30, ax = plt.subplots(figsize=(10, 8))
+ax.bar(feq30.index, feq30.values, width=0.5, color='#DA291C')
+ax.set_title("Number of listings with Superhost", fontsize=20)
+ax.set_ylabel('Number of listings', fontsize=12)
+ax.tick_params(axis='x', labelsize=12, rotation=0)
+ax.tick_params(axis='y', labelsize=12)
