@@ -583,3 +583,35 @@ ax.set_title("Number of listings with Superhost", fontsize=20)
 ax.set_ylabel('Number of listings', fontsize=12)
 ax.tick_params(axis='x', labelsize=12, rotation=0)
 ax.tick_params(axis='y', labelsize=12)
+
+# OTRA HOST
+
+# Load data
+listings_details = pd.read_csv("listings_details.csv")
+listings10 = listings_details[listings_details['number_of_reviews'] >= 10]
+
+# Clean data
+listings_details.host_is_superhost = listings_details.host_is_superhost.replace({"t": "True", "f": "False"})
+
+# Plot bar chart with Manchester red color
+fig40, ax1 = plt.subplots(figsize=(10, 8))
+feq40 = listings_details['host_is_superhost'].value_counts()
+ax1.bar(feq40.index, feq40.values, width=0.5, color='#da291c')
+ax1.set_title("Number of listings with Superhost", fontsize=20)
+ax1.set_ylabel('Number of listings', fontsize=12)
+ax1.tick_params(axis='both', labelsize=16)
+
+# Plot histograms with Manchester red color
+fig50, (ax2, ax3) = plt.subplots(ncols=2, figsize=(20, 10))
+ax2.hist(listings10['host_response_rate'].dropna(), color='#da291c')
+ax2.set_title("Response rate (at least 10 reviews)", fontsize=20)
+ax2.set_ylabel("number of listings")
+ax2.set_xlabel("percent", fontsize=20)
+ax2.tick_params(axis='both', labelsize=16)
+
+feq50 = listings10['host_response_time'].value_counts()
+ax3.bar(feq50.index, feq50.values, color='#da291c', width=0.5)
+ax3.set_title("Response time (at least 10 reviews)", fontsize=20)
+ax3.set_ylabel("number of listings")
+ax3.tick_params(axis='both', labelsize=16)
+plt.xticks(rotation=45)
