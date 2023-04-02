@@ -159,19 +159,18 @@ if st.sidebar.button("A city for everyone"):
     
     # MAPA FAMILIES
    
-# Crear el mapa
-    map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
-
+# Crear mapa de Folium
+    map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
 # Uso FastMarkerCluster para agrupar los marcadores
     marker_cluster1 = FastMarkerCluster([], name='marker_cluster1')
 
 # Iterar sobre cada fila de familias_df y añadir un marcador al objeto MarkerCluster
     for index, row in familias_df.iterrows():
         folium.Marker(
-        location=[row['latitude'], row['longitude']],
-        tooltip=row['name'],
-        icon=folium.features.CustomIcon('img/family_icon.png', icon_size=(30, 30))
-    ).add_to(marker_cluster1)
+            location=[row['latitude'], row['longitude']],
+            tooltip=row['name'],
+            icon=folium.features.CustomIcon('/content/drive/MyDrive/BOOTCAMP_Data_Analytics/MANCHESTER/img/family_icon.png', icon_size=(30, 30))
+        ).add_to(marker_cluster1)
 
 # Añadir el objeto MarkerCluster al mapa
     marker_cluster1.add_to(map1)
@@ -179,10 +178,9 @@ if st.sidebar.button("A city for everyone"):
 # Añadir el control de capas al mapa
     folium.LayerControl().add_to(map1)
 
-# Visualizar el mapa en Streamlit
-    st.markdown(map1._repr_html_(), unsafe_allow_html=True)
-    
-    streamlit_folium.folium_static(map1)
+# Mostrar el mapa en Streamlit
+    from streamlit_folium import folium_static
+    folium_static(map1)
 
     # DIVERSIDAD
     
