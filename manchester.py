@@ -233,7 +233,7 @@ if st.sidebar.button("A city for everyone"):
         folium.Marker(
             location=[row['latitude'], row['longitude']],
             tooltip=row['name'],
-            icon=folium.features.CustomIcon('/content/drive/MyDrive/BOOTCAMP_Data_Analytics/MANCHESTER/img/business_trip.png', icon_size= (30, 30))
+            icon=folium.features.CustomIcon('img/business_trip.png', icon_size= (30, 30))
         ).add_to(marker_cluster3)
 
     # Añadir el objeto MarkerCluster al mapa
