@@ -142,11 +142,27 @@ if st.sidebar.button("Neighbourhoods"):
     
     st.plotly_chart(fig2, use_container_width=True)
     
-    # Crear el mapa
-    m = create_map(df)
+    m = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
 
-    # Mostrar el mapa en Streamlit
-    folium_static(m)    
+    folium.GeoJson(data=vene.to_json(),
+               name='Manchester',
+               tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+                                                      labels=True,
+                                                      sticky=False),
+               style_function=lambda feature: {
+                   'fillColor': get_color(feature),
+                   'color': 'black',
+                   'weight': 1,
+                   'dashArray': '5, 5',
+                   'fillOpacity': 0.9
+               },
+               highlight_function=lambda feature: {'weight': 3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}
+              ).add_to(m)
+
+# Crear un diccionario para el mapa de colores
+
+# Añadir la leyenda de colores al mapa
+    m.add_child(color_scale2)
     
 if st.sidebar.button("A city for everyone"):
     
