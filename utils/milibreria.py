@@ -115,21 +115,48 @@ fig6.show(renderer = 'colab')
 
 # Mapa N1: Average price by neighbourhood: ¡¡¡¡ARREGLAR!!!!
 
-map7 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
-mcter = gpd.read_file("data/neighbourhoods.geojson")
-folium.GeoJson(data=mcter,
-               name='Manchester',
-               tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
-                                                      labels=True,
-                                                      sticky=True),
-               style_function= lambda feature: {
-                   'fillColor': get_color(feature),
-                   'color': 'black',
-                   'weight': 1,
-                   'dashArray': '5, 5',
-                   'fillOpacity':0.5
-                   },
-               highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map7)
+def get_color(neighbourhood, data):
+    # Función que devuelve el color de relleno según el promedio de precios del barrio
+    price = data.loc[data['neighbourhood'] == neighbourhood, 'average_price'].iloc[0]
+    if price < 50:
+        return '#f7fbff'
+    elif price < 100:
+        return '#deebf7'
+    elif price < 150:
+        return '#c6dbef'
+    elif price < 200:
+        return '#9ecae1'
+    elif price < 250:
+        return '#6baed6'
+    elif price < 300:
+        return '#4292c6'
+    else:
+        return '#2171b5'
+
+def create_map(data):
+    # Crear un objeto GeoJson con la información de los datos y la configuración de estilo
+    m = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
+
+    geo_json = folium.GeoJson(
+        data=data,
+        name='Manchester',
+        tooltip=folium.features.GeoJsonTooltip(
+            fields=['neighbourhood', 'average_price'],
+            labels=True,
+            sticky=True),
+        style_function=lambda feature: {
+            'fillColor': get_color(feature['properties']['neighbourhood'], data),
+            'color': 'black',
+            'weight': 1,
+            'dashArray': '5, 5',
+            'fillOpacity': 0.5
+        },
+        highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature['properties']['neighbourhood'], data), 'fillOpacity': 0.8}
+    )
+
+    geo_json.add_to(m)
+
+    return m
 
 
 # Gráfica N4: Tipos de propiedades:
