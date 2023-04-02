@@ -251,7 +251,22 @@ if st.sidebar.button("A city for everyone"):
     
     st.plotly_chart(figLT2, use_container_width=True)
 
-    # st.markdown(map3._repr_html_(), unsafe_allow_html=True)
+    # MAPA LONG TERM
+    
+    # Establecer la ubicación inicial del mapa
+    map4 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
+    
+    # Crear el objeto MarkerCluster y agregar marcadores al mapa
+    marker_cluster4 = FastMarkerCluster([], name='marker_cluster4')
+
+    for index, row in longterm_df.iterrows():
+        folium.Marker(
+            location=[row['latitude'], row['longitude']],
+            tooltip=row['name'],
+            icon=folium.features.CustomIcon('img/family_icon.png', icon_size= (30, 30))
+        ).add_to(marker_cluster4)
+    
+    marker_cluster4.add_to(map4)
     
 if st.sidebar.button("Reviews"):
     
