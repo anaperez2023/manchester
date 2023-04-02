@@ -527,91 +527,91 @@ fig9.tight_layout(pad=3.0)
 
 # Average review score location
 
-# Leer el archivo de datos
-@st.cache
-def load_data():
-    df = pd.read_csv("data/listings.csv")
-    return df
+# # Leer el archivo de datos
+# @st.cache
+# def load_data():
+#     df = pd.read_csv("data/listings.csv")
+#     return df
 
-df = load_data()
+# df = load_data()
 
-# Filtrar por listados con al menos 60 reseñas
-df_filtered = df[df['number_of_reviews'] >= 60]
+# # Filtrar por listados con al menos 60 reseñas
+# df_filtered = df[df['number_of_reviews'] >= 60]
 
-# Agrupar por barrio y obtener la media de las reseñas de ubicación
-feq20 = df_filtered.groupby('neighbourhood')['review_scores_location'].mean().sort_values(ascending=True)
+# # Agrupar por barrio y obtener la media de las reseñas de ubicación
+# feq20 = df_filtered.groupby('neighbourhood')['review_scores_location'].mean().sort_values(ascending=True)
 
-# Definir los colores para la gráfica
-colors = [(251, 225, 34),(145,129,129),(218, 41, 28)]
-colors = ['#%02x%02x%02x' % c for c in colors]
+# # Definir los colores para la gráfica
+# colors = [(251, 225, 34),(145,129,129),(218, 41, 28)]
+# colors = ['#%02x%02x%02x' % c for c in colors]
 
-# Crear la gráfica con Plotly Express
-fig20 = px.bar(feq20, orientation='h', color=feq20.values, color_continuous_scale=colors)
+# # Crear la gráfica con Plotly Express
+# fig20 = px.bar(feq20, orientation='h', color=feq20.values, color_continuous_scale=colors)
 
-# Configurar el diseño de la gráfica
-fig20.update_layout(title_text='Average review score location (at least 10 reviews)', xaxis_title='Score (scale 1-10)', yaxis_title='')
+# # Configurar el diseño de la gráfica
+# fig20.update_layout(title_text='Average review score location (at least 10 reviews)', xaxis_title='Score (scale 1-10)', yaxis_title='')
 
-fig20.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=16)
+# fig20.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=16)
 
-# Filtrar por alojamientos con capacidad para dos personas
-df_filtered = df[df['accommodates'] == 2]
+# # Filtrar por alojamientos con capacidad para dos personas
+# df_filtered = df[df['accommodates'] == 2]
 
-# Filtrar por barrios con al menos 20 alojamientos
-df_filtered = df_filtered[df_filtered.groupby('neighbourhood')['neighbourhood'].transform('size') >= 20]
+# # Filtrar por barrios con al menos 20 alojamientos
+# df_filtered = df_filtered[df_filtered.groupby('neighbourhood')['neighbourhood'].transform('size') >= 20]
 
-# Agrupar por barrio y obtener la media de los precios
-feq21 = df_filtered.groupby('neighbourhood')['price'].mean().sort_values(ascending=True)
+# # Agrupar por barrio y obtener la media de los precios
+# feq21 = df_filtered.groupby('neighbourhood')['price'].mean().sort_values(ascending=True)
 
-# Crear la segunda gráfica con Plotly Express
-fig21 = px.bar(feq21, orientation='h', color=feq21.values, color_continuous_scale=colors)
+# # Crear la segunda gráfica con Plotly Express
+# fig21 = px.bar(feq21, orientation='h', color=feq21.values, color_continuous_scale=colors)
 
-# Configurar el diseño de la segunda gráfica
-fig21.update_layout(title_text='Average daily price for a 2-person accommodation with at least 5 entries', xaxis_title='Average daily price (Euro)', yaxis_title='')
+# # Configurar el diseño de la segunda gráfica
+# fig21.update_layout(title_text='Average daily price for a 2-person accommodation with at least 5 entries', xaxis_title='Average daily price (Euro)', yaxis_title='')
 
-fig21.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=20)
+# fig21.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=20)
 
- # HOSTS
+#  # HOSTS
 
-# Replace 't' and 'f' with 'True' and 'False'
-listings_details.host_is_superhost = listings_details.host_is_superhost.replace({"t": "True", "f": "False"})
+# # Replace 't' and 'f' with 'True' and 'False'
+# listings_details.host_is_superhost = listings_details.host_is_superhost.replace({"t": "True", "f": "False"})
 
-# Count values and plot bar chart
-feq30 = listings_details['host_is_superhost'].value_counts()
-fig30, ax = plt.subplots(figsize=(10, 8))
-ax.bar(feq30.index, feq30.values, width=0.5, color='#DA291C')
-ax.set_title("Number of listings with Superhost", fontsize=20)
-ax.set_ylabel('Number of listings', fontsize=12)
-ax.tick_params(axis='x', labelsize=12, rotation=0)
-ax.tick_params(axis='y', labelsize=12)
+# # Count values and plot bar chart
+# feq30 = listings_details['host_is_superhost'].value_counts()
+# fig30, ax = plt.subplots(figsize=(10, 8))
+# ax.bar(feq30.index, feq30.values, width=0.5, color='#DA291C')
+# ax.set_title("Number of listings with Superhost", fontsize=20)
+# ax.set_ylabel('Number of listings', fontsize=12)
+# ax.tick_params(axis='x', labelsize=12, rotation=0)
+# ax.tick_params(axis='y', labelsize=12)
 
-# OTRA HOST
+# # OTRA HOST
 
-# Load data
-listings_details = pd.read_csv("listings_details.csv")
-listings10 = listings_details[listings_details['number_of_reviews'] >= 10]
+# # Load data
+# listings_details = pd.read_csv("listings_details.csv")
+# listings10 = listings_details[listings_details['number_of_reviews'] >= 10]
 
-# Clean data
-listings_details.host_is_superhost = listings_details.host_is_superhost.replace({"t": "True", "f": "False"})
+# # Clean data
+# listings_details.host_is_superhost = listings_details.host_is_superhost.replace({"t": "True", "f": "False"})
 
-# Plot bar chart with Manchester red color
-fig40, ax1 = plt.subplots(figsize=(10, 8))
-feq40 = listings_details['host_is_superhost'].value_counts()
-ax1.bar(feq40.index, feq40.values, width=0.5, color='#da291c')
-ax1.set_title("Number of listings with Superhost", fontsize=20)
-ax1.set_ylabel('Number of listings', fontsize=12)
-ax1.tick_params(axis='both', labelsize=16)
+# # Plot bar chart with Manchester red color
+# fig40, ax1 = plt.subplots(figsize=(10, 8))
+# feq40 = listings_details['host_is_superhost'].value_counts()
+# ax1.bar(feq40.index, feq40.values, width=0.5, color='#da291c')
+# ax1.set_title("Number of listings with Superhost", fontsize=20)
+# ax1.set_ylabel('Number of listings', fontsize=12)
+# ax1.tick_params(axis='both', labelsize=16)
 
-# Plot histograms with Manchester red color
-fig50, (ax2, ax3) = plt.subplots(ncols=2, figsize=(20, 10))
-ax2.hist(listings10['host_response_rate'].dropna(), color='#da291c')
-ax2.set_title("Response rate (at least 10 reviews)", fontsize=20)
-ax2.set_ylabel("number of listings")
-ax2.set_xlabel("percent", fontsize=20)
-ax2.tick_params(axis='both', labelsize=16)
+# # Plot histograms with Manchester red color
+# fig50, (ax2, ax3) = plt.subplots(ncols=2, figsize=(20, 10))
+# ax2.hist(listings10['host_response_rate'].dropna(), color='#da291c')
+# ax2.set_title("Response rate (at least 10 reviews)", fontsize=20)
+# ax2.set_ylabel("number of listings")
+# ax2.set_xlabel("percent", fontsize=20)
+# ax2.tick_params(axis='both', labelsize=16)
 
-feq50 = listings10['host_response_time'].value_counts()
-ax3.bar(feq50.index, feq50.values, color='#da291c', width=0.5)
-ax3.set_title("Response time (at least 10 reviews)", fontsize=20)
-ax3.set_ylabel("number of listings")
-ax3.tick_params(axis='both', labelsize=16)
-plt.xticks(rotation=45)
+# feq50 = listings10['host_response_time'].value_counts()
+# ax3.bar(feq50.index, feq50.values, color='#da291c', width=0.5)
+# ax3.set_title("Response time (at least 10 reviews)", fontsize=20)
+# ax3.set_ylabel("number of listings")
+# ax3.tick_params(axis='both', labelsize=16)
+# plt.xticks(rotation=45)
