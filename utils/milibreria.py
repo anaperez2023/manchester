@@ -115,21 +115,21 @@ fig6.show(renderer = 'colab')
 
 # Mapa N1: Average price by neighbourhood: ¡¡¡¡ARREGLAR!!!!
 
-# map7 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
-# mcter = gpd.read_file("data/neighbourhoods.geojson")
-# folium.GeoJson(data=mcter,
-#                name='Manchester',
-#                tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
-#                                                       labels=True,
-#                                                       sticky=True),
-#                style_function= lambda feature: {
-#                    'fillColor': get_color(feature),
-#                    'color': 'black',
-#                    'weight': 1,
-#                    'dashArray': '5, 5',
-#                    'fillOpacity':0.5
-#                    },
-#                highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map7)
+map7 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
+mcter = gpd.read_file("data/neighbourhoods.geojson")
+folium.GeoJson(data=mcter,
+               name='Manchester',
+               tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+                                                      labels=True,
+                                                      sticky=True),
+               style_function= lambda feature: {
+                   'fillColor': get_color(feature),
+                   'color': 'black',
+                   'weight': 1,
+                   'dashArray': '5, 5',
+                   'fillOpacity':0.5
+                   },
+               highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map7)
 
 
 # Gráfica N4: Tipos de propiedades:
