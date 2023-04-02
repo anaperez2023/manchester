@@ -493,7 +493,7 @@ figLT2.update_traces(
 # REVIEWS
 
 # Filter the listings with at least 10 reviews
-listings10 = listings_details[listings_details['number_of_reviews'] >= 10]
+listings10 = listings[listings['number_of_reviews'] >= 10]
 
 # Create a figure with subplots
 fig9, axs = plt.subplots(2, 3, figsize=(20, 15))
