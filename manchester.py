@@ -143,7 +143,7 @@ if st.sidebar.button("Neighbourhoods"):
     st.plotly_chart(fig2, use_container_width=True)
     
     # Crear el mapa
-    m = create_map(data)
+    m = create_map()
 
     # Mostrar el mapa en Streamlit
     folium_static(m)    
