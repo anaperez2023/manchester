@@ -539,19 +539,19 @@ df = load_data()
 df_filtered = df[df['number_of_reviews'] >= 60]
 
 # Agrupar por barrio y obtener la media de las reseñas de ubicación
-feq1 = df_filtered.groupby('neighbourhood')['review_scores_location'].mean().sort_values(ascending=True)
+feq20 = df_filtered.groupby('neighbourhood')['review_scores_location'].mean().sort_values(ascending=True)
 
 # Definir los colores para la gráfica
 colors = [(251, 225, 34),(145,129,129),(218, 41, 28)]
 colors = ['#%02x%02x%02x' % c for c in colors]
 
 # Crear la gráfica con Plotly Express
-fig = px.bar(feq1, orientation='h', color=feq1.values, color_continuous_scale=colors)
+fig20 = px.bar(feq20, orientation='h', color=feq20.values, color_continuous_scale=colors)
 
 # Configurar el diseño de la gráfica
-fig.update_layout(title_text='Average review score location (at least 10 reviews)', xaxis_title='Score (scale 1-10)', yaxis_title='')
+fig20.update_layout(title_text='Average review score location (at least 10 reviews)', xaxis_title='Score (scale 1-10)', yaxis_title='')
 
-fig.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=16)
+fig20.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=16)
 
 # Filtrar por alojamientos con capacidad para dos personas
 df_filtered = df[df['accommodates'] == 2]
@@ -560,14 +560,14 @@ df_filtered = df[df['accommodates'] == 2]
 df_filtered = df_filtered[df_filtered.groupby('neighbourhood')['neighbourhood'].transform('size') >= 20]
 
 # Agrupar por barrio y obtener la media de los precios
-feq2 = df_filtered.groupby('neighbourhood')['price'].mean().sort_values(ascending=True)
+feq21 = df_filtered.groupby('neighbourhood')['price'].mean().sort_values(ascending=True)
 
 # Crear la segunda gráfica con Plotly Express
-fig2 = px.bar(feq2, orientation='h', color=feq2.values, color_continuous_scale=colors)
+fig21 = px.bar(feq21, orientation='h', color=feq21.values, color_continuous_scale=colors)
 
 # Configurar el diseño de la segunda gráfica
-fig2.update_layout(title_text='Average daily price for a 2-person accommodation with at least 5 entries', xaxis_title='Average daily price (Euro)', yaxis_title='')
+fig21.update_layout(title_text='Average daily price for a 2-person accommodation with at least 5 entries', xaxis_title='Average daily price (Euro)', yaxis_title='')
 
-fig2.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=20)
+fig21.update_layout(xaxis_tickfont_size=16, yaxis_tickfont_size=20)
 
 
