@@ -128,7 +128,6 @@ if st.sidebar.button("Dataset"):
     
     # Regulations AirBnB
     st.image("img/regulationsABNB.png", use_column_width=True)
-    st.markdown("<h3 style='font-size: 16px;'>Regulaciones Airbnb Manchester:</h3>", unsafe_allow_html=True)
     
     st.plotly_chart(fig5, use_container_width=True)
 
