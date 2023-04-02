@@ -194,3 +194,7 @@ if st.sidebar.button("Reviews"):
     st.markdown("<h3 style='font-size: 16px;'>Además de las reseñas escritas, los invitados pueden enviar una calificación de estrellas general y un conjunto de calificaciones de estrellas de categoría. Los huéspedes pueden dar calificaciones sobre: experiencia general, limpieza, precisión, valor, comunicación, llegada y ubicación. A continuación puede ver la distribución de puntajes de todas esas categorías.</h3>", unsafe_allow_html=True)
 
     st.pyplot(fig9)
+    
+    st.plotly_chart(fig)
+    
+    st.plotly_chart(fig2)
