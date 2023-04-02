@@ -198,3 +198,13 @@ if st.sidebar.button("Reviews"):
     st.plotly_chart(fig20)
     
     st.plotly_chart(fig21)
+    
+ if st.sidebar.button("Hosts"):
+    
+    st.pyplot(fig30)
+    
+    st.pyplot(fig40)
+
+    st.pyplot(fig50)
+
+
