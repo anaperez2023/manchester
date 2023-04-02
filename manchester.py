@@ -221,8 +221,28 @@ if st.sidebar.button("A city for everyone"):
     
     st.plotly_chart(figBS2, use_container_width=True)
     
-    # st.markdown(map3._repr_html_(), unsafe_allow_html=True)
+    # MAPA BUSINESS
 
+    # Crear mapa de Folium
+    map3 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
+
+    # uso MarkerCluster para agrupar los marcadores
+    marker_cluster3 = FastMarkerCluster([], name='marker_cluster3')
+
+    # Iterar sobre cada fila de business_df y añadir un marcador al objeto MarkerCluster
+    for index, row in business_df.iterrows():
+        folium.Marker(
+            location=[row['latitude'], row['longitude']],
+            tooltip=row['name'],
+            icon=folium.features.CustomIcon('/content/drive/MyDrive/BOOTCAMP_Data_Analytics/MANCHESTER/img/business_trip.png', icon_size= (30, 30))
+        ).add_to(marker_cluster3)
+
+    # Añadir el objeto MarkerCluster al mapa
+    marker_cluster3.add_to(map3)
+
+    # Mostrar el mapa en Streamlit
+    folium_static(map3)
+    
     # LONG TERM
     
     st.image("img/longterm.png", use_column_width=True)
