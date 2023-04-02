@@ -366,7 +366,6 @@ business_df1= business_df.query('price <= 400')
 figBS1 = px.scatter(business_df1, x='price', y='neighbourhood')
 
 figBS1.update_layout(
-    plot_bgcolor='grey',
     title={
         'text': "Ideal accommodations for business travelers: Wifi + Dedicated Workspace (Prices <= 400€)",
         'x': 0.5,
