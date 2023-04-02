@@ -210,7 +210,6 @@ if st.sidebar.button("A city for everyone"):
     marker_cluster2.add_to(map2)
 
     # Mostrar el mapa en Streamlit
-    st.write("Mapa de diversidad")
     folium_static(map2)
    
     # BUSINESS
