@@ -142,59 +142,6 @@ if st.sidebar.button("Neighbourhoods"):
     
     st.plotly_chart(fig2, use_container_width=True)
     
-    m = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
-    
-    #MAPA DE PRECIO MEDIO PARA DOS PERSONAS
-
-# Cargar los datos
-mcter = gpd.read_file('data\neighbourhoods.geojson')
-
-# Filtrar los datos para dos personas y al menos 200 entradas
-feq = df[df['accommodates'] == 2]
-feq = feq.groupby('neighbourhood')['price'].agg(['mean', 'count'])
-feq = feq[feq['count'] >= 5]
-feq = feq['mean'].sort_values(ascending=True)
-
-# Combinar los datos con el GeoDataFrame
-mcter = pd.merge(mcter, feq, on='neighbourhood', how='inner')
-mcter.rename(columns={'mean': 'average_price'}, inplace=True)
-mcter.average_price = mcter.average_price.round(decimals=0)
-
-# Crear un diccionario para el mapa de colores
-map_dict = mcter.set_index('neighbourhood')['average_price'].to_dict()
-color_scale = LinearColormap(['yellow', 'red', 'purple'], vmin=min(map_dict.values()), vmax=max(map_dict.values()), caption='Average price')
-color_scale2 = LinearColormap(['yellow', 'red', 'purple'], vmin=min(map_dict.values()), vmax=max(map_dict.values()), caption='Average price')
-
-# Crear la función para obtener el color de cada característica del GeoJSON
-def get_color(feature):
-    value = map_dict.get(feature['properties']['neighbourhood'])
-    if value is None:
-        return '#BADADA'
-    else:
-        return color_scale2(value)
-
-# Crear el mapa con Folium
-m = folium.Map(location=[mcter.centroid.y.mean(), mcter.centroid.x.mean()], zoom_start=12, tiles='cartodbpositron')
-
-# Añadir las capas al mapa
-folium.Choropleth(geo_data=mcter,
-                  name='Average price per night for two people',
-                  data=mcter,
-                  columns=['neighbourhood', 'average_price'],
-                  key_on='feature.properties.neighbourhood',
-                  fill_color=get_color,
-                  fill_opacity=0.8,
-                  line_opacity=0.2,
-                  legend_name='Average price per night for two people',
-                  highlight=True,
-                  smooth_factor=1.0).add_to(m)
-
-folium.LayerControl().add_to(m)
-
-# Mostrar el mapa en Streamlit
-folium_static(m)
-
-    
 if st.sidebar.button("A city for everyone"):
     
     st.markdown("<h3 style='font-size: 16px;'>Teniendo en cuenta los datos de la columna Amenities del dataset de AirBnB en Manchester, hemos extraído algunos alojamientos idóneos para diferentes tipos de viajeros:</h3>", unsafe_allow_html=True)
