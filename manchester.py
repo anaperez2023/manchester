@@ -158,30 +158,36 @@ if st.sidebar.button("A city for everyone"):
     
     
     # MAPA FAMILIES
-   
+    
 # Crear mapa de Folium
-    map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
+map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11) 
+
 # Uso FastMarkerCluster para agrupar los marcadores
-    marker_cluster1 = FastMarkerCluster([], name='marker_cluster1')
+marker_cluster1 = FastMarkerCluster([], name='marker_cluster1')
 
 # Iterar sobre cada fila de familias_df y añadir un marcador al objeto MarkerCluster
-    for index, row in familias_df.iterrows():
-        folium.Marker(
-            location=[row['latitude'], row['longitude']],
-            tooltip=row['name'],
-            icon=folium.features.CustomIcon('img/family_icon.png', icon_size=(30, 30))
-        ).add_to(marker_cluster1)
+for index, row in familias_df.iterrows():
+    folium.Marker(
+        location=[row['latitude'], row['longitude']],
+        tooltip=row['name'],
+        icon=folium.features.CustomIcon('img/family_icon.png', icon_size=(30, 30))
+    ).add_to(marker_cluster1)
 
 # Añadir el objeto MarkerCluster al mapa
-    marker_cluster1.add_to(map1)
+marker_cluster1.add_to(map1)
 
 # Añadir el control de capas al mapa
-    folium.LayerControl().add_to(map1)
+folium.LayerControl().add_to(map1)
 
-# Mostrar el mapa en Streamlit
-    from streamlit_folium import folium_static
-    folium_static(map1)
-
+# Envolver todo el mapa en un contenedor centrado de ancho completo
+with st.container():
+    st.markdown("<h1 style='text-align: center;'>Mapa de Manchester</h1>", unsafe_allow_html=True)
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    folium_static(map1, width='100%')
+   
     # DIVERSIDAD
     
     st.image("img/diversidad.png", use_column_width=True)
