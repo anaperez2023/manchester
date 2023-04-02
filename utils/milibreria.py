@@ -281,25 +281,25 @@ figFAM2.show(renderer='colab')
 
 # Mapa Familias:
 
-# # Crear mapa   ¡¡¡¡ ARREGLAR !!! 
-# map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
+# Crear mapa   ¡¡¡¡ ARREGLAR !!! 
+map1 = folium.Map(location=[53.4808, -2.2426], zoom_start=11)
 
-# # Uso FastMarkerCluster para agrupar los marcadores
-# marker_cluster1 = FastMarkerCluster([], name='marker_cluster1')
+# Uso FastMarkerCluster para agrupar los marcadores
+marker_cluster1 = FastMarkerCluster([], name='marker_cluster1')
 
-# # Iterar sobre cada fila de familias_df y añadir un marcador al objeto MarkerCluster
-# for index, row in familias_df.iterrows():
-#     folium.Marker(
-#         location=[row['latitude'], row['longitude']],
-#         tooltip=row['name'],
-#         icon=folium.features.CustomIcon('img/family_icon.png', icon_size=(30, 30))
-#     ).add_to(marker_cluster1)
+# Iterar sobre cada fila de familias_df y añadir un marcador al objeto MarkerCluster
+for index, row in familias_df.iterrows():
+    folium.Marker(
+        location=[row['latitude'], row['longitude']],
+        tooltip=row['name'],
+        icon=folium.features.CustomIcon('img/family_icon.png', icon_size=(30, 30))
+    ).add_to(marker_cluster1)
 
-# # Añadir el objeto MarkerCluster al mapa
-# marker_cluster1.add_to(map1)
+# Añadir el objeto MarkerCluster al mapa
+marker_cluster1.add_to(map1)
 
-# # Añadir el control de capas al mapa
-# folium.LayerControl().add_to(map1)
+# Añadir el control de capas al mapa
+folium.LayerControl().add_to(map1)
 
 # 2. PEOPLE WITH DISABILITIES
 
