@@ -195,6 +195,6 @@ if st.sidebar.button("Reviews"):
 
     st.pyplot(fig9)
     
-    st.plotly_chart(fig)
+    st.plotly_chart(fig20)
     
-    st.plotly_chart(fig2)
+    st.plotly_chart(fig21)
