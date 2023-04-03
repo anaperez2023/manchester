@@ -268,4 +268,14 @@ if st.sidebar.button("A city for everyone"):
     # Mostrar el mapa en Streamlit
     folium_static(map4)
     
+if st.sidebar.button("Conclusiones"):
+    
+    st.write("xxxxx")
+        st.image("img/manchester-collage.jpg", use_column_width=True)
+        
+        
+if st.sidebar.button("MAPKTZDUXMZHZT"):
+        st.image("img/Gracias_Alan-Turing", use_column_width=True)
+        
+
 
