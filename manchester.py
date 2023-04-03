@@ -275,7 +275,7 @@ if st.sidebar.button("Conclusiones"):
         
         
 if st.sidebar.button("MAPKTZDUXMZHZT"):
-    st.image("img/Gracias_Alan-Turing", use_column_width=True)
+    st.image("img/Gracias_Alan-Turing.png", use_column_width=True)
         
 
 
