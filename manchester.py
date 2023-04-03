@@ -266,13 +266,7 @@ if st.sidebar.button("A city for everyone"):
     marker_cluster4.add_to(map4)
     
     # Mostrar el mapa en Streamlit
-    folium_static(map4)
-    
-if st.sidebar.button("Conclusiones"):
-    
-    st.write("xxxxx")
-    st.image("img/manchester-collage.jpg", use_column_width=True)
-        
+    folium_static(map4)        
         
 if st.sidebar.button("MAPKTZDUXMZHZT"):
     st.image("img/Gracias_Alan-Turing.png", use_column_width=True)
