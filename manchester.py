@@ -271,11 +271,11 @@ if st.sidebar.button("A city for everyone"):
 if st.sidebar.button("Conclusiones"):
     
     st.write("xxxxx")
-        st.image("img/manchester-collage.jpg", use_column_width=True)
+    st.image("img/manchester-collage.jpg", use_column_width=True)
         
         
 if st.sidebar.button("MAPKTZDUXMZHZT"):
-        st.image("img/Gracias_Alan-Turing", use_column_width=True)
+    st.image("img/Gracias_Alan-Turing", use_column_width=True)
         
 
 
